@@ -45,44 +45,44 @@ export function ScrollEngine({ children }) {
           { opacity: 0, y: 50 },
           { opacity: 1, y: 0, duration: 2, stagger: 0.5 }, 0);
         tl.to(sections[0].querySelector('.content-inner'),
-          { opacity: 0, y: -50, duration: 2 }, 48);
+          { opacity: 0, y: -50, duration: 2 }, 46);
       }
 
       if (sections[1]) {
-        tl.to(wrapper, { y: '-100vh', duration: 2, ease: 'power2.inOut' }, 50);
-        // Reveal content-inner container
+        tl.to(wrapper, { y: '-100vh', duration: 4, ease: 'power2.inOut' }, 46);
+        // Reveal content-inner container perfectly aligned
         tl.to(sections[1].querySelector('.content-inner'),
-          { opacity: 1, duration: 1 }, 52);
-        // Volleyball fades in after wrapper moves
+          { opacity: 1, duration: 1 }, 49);
+        // Volleyball fades in
         tl.fromTo(sections[1].querySelectorAll('.shop-animate-item'),
           { opacity: 0, y: 50 },
-          { opacity: 1, y: 0, duration: 2, stagger: 0.5, immediateRender: false }, 52);
+          { opacity: 1, y: 0, duration: 2, stagger: 0.5, immediateRender: false }, 49);
         tl.to(sections[1].querySelector('.content-inner'),
-          { opacity: 0, y: -50, duration: 2 }, 117);
+          { opacity: 0, y: -50, duration: 2 }, 115);
       }
 
       if (sections[2]) {
-        tl.to(wrapper, { y: '-200vh', duration: 2, ease: 'power2.inOut' }, 119);
-        // Reveal content-inner container
+        tl.to(wrapper, { y: '-200vh', duration: 4, ease: 'power2.inOut' }, 115);
+        // Reveal content-inner container perfectly aligned
         tl.to(sections[2].querySelector('.content-inner'),
-          { opacity: 1, duration: 1 }, 121);
-        // Badminton fades in after wrapper moves
+          { opacity: 1, duration: 1 }, 118);
+        // Badminton fades in
         tl.fromTo(sections[2].querySelectorAll('.shop-animate-item'),
           { opacity: 0, y: 50 },
-          { opacity: 1, y: 0, duration: 2, stagger: 0.5, immediateRender: false }, 121);
+          { opacity: 1, y: 0, duration: 2, stagger: 0.5, immediateRender: false }, 118);
         tl.to(sections[2].querySelector('.content-inner'),
-          { opacity: 0, y: -50, duration: 2 }, 136);
+          { opacity: 0, y: -50, duration: 2 }, 134);
       }
 
       if (sections[3]) {
-        tl.to(wrapper, { y: '-300vh', duration: 2, ease: 'power2.inOut' }, 138);
+        tl.to(wrapper, { y: '-300vh', duration: 4, ease: 'power2.inOut' }, 134);
         // First reveal the content-inner container
         tl.to(sections[3].querySelector('.content-inner'),
-          { opacity: 1, duration: 1 }, 140);
-        // Cricket fades in after wrapper moves
+          { opacity: 1, duration: 1 }, 137);
+        // Cricket fades in
         tl.fromTo(sections[3].querySelectorAll('.shop-animate-item'),
           { opacity: 0, y: 50 },
-          { opacity: 1, y: 0, duration: 2, stagger: 0.5, immediateRender: false }, 140);
+          { opacity: 1, y: 0, duration: 2, stagger: 0.5, immediateRender: false }, 137);
       }
 
       ScrollTrigger.refresh();
