@@ -10,6 +10,7 @@ export function CanvasSequence({ totalFrames = 150, onSportChange }) {
   const [images, setImages] = useState([]);
   const frameRef = useRef({ current: 1 });
   const lastSportRef = useRef(null);
+  const lastDrawnIndexRef = useRef(-1);
 
   // Determine active sport from frame number
   const getSportFromFrame = useCallback((frame) => {
@@ -72,6 +73,10 @@ export function CanvasSequence({ totalFrames = 150, onSportChange }) {
     if (safeIndex < 0) safeIndex = 0;
     if (safeIndex >= images.length) safeIndex = images.length - 1;
 
+    // PERFORMANCE FIX: Don't redraw if it's the exact same frame!
+    if (lastDrawnIndexRef.current === safeIndex) return;
+    lastDrawnIndexRef.current = safeIndex;
+
     const img = images[safeIndex];
     if (!img) return;
 
@@ -117,15 +122,24 @@ export function CanvasSequence({ totalFrames = 150, onSportChange }) {
   useEffect(() => {
     if (images.length === 0) return;
 
+    let animationFrameId;
+
     const handleScrollProgress = (e) => {
       const progress = e.detail;
       const frame = 1 + progress * (totalFrames - 1);
       frameRef.current.current = frame;
-      drawFrame(frame);
+      
+      if (animationFrameId) cancelAnimationFrame(animationFrameId);
+      animationFrameId = requestAnimationFrame(() => {
+        drawFrame(frameRef.current.current);
+      });
     };
 
     window.addEventListener('scrollProgress', handleScrollProgress);
-    return () => window.removeEventListener('scrollProgress', handleScrollProgress);
+    return () => {
+      window.removeEventListener('scrollProgress', handleScrollProgress);
+      if (animationFrameId) cancelAnimationFrame(animationFrameId);
+    };
   }, [images, totalFrames]);
 
   return (
