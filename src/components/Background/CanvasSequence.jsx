@@ -26,7 +26,7 @@ export function CanvasSequence({ totalFrames = 150, onSportChange }) {
     for (let i = 1; i <= totalFrames; i++) {
       const img = new Image();
       const frameNumber = i.toString().padStart(3, '0');
-      img.src = `/frames/ezgif-frame-${frameNumber}.png`;
+      img.src = `/frames/ezgif-frame-${frameNumber}.jpg`;
 
       img.onload = () => {
         loadedCount++;
