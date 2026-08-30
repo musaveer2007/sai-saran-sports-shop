@@ -92,12 +92,12 @@ export function Hero() {
 
           {/* Call to Action */}
           <div style={{ display: 'flex', flexWrap: 'wrap', gap: '16px', alignItems: 'center' }}>
-            <button className="btn-r" style={{ padding: '16px 32px', fontSize: '14px' }}>
+            <a href="#products" className="btn-r" style={{ padding: '16px 32px', fontSize: '14px' }}>
               SHOP PRODUCTS
-            </button>
-            <button className="btn-ol" style={{ padding: '15px 32px', fontSize: '14px' }}>
+            </a>
+            <a href="#contact" className="btn-ol" style={{ padding: '15px 32px', fontSize: '14px' }}>
               GET A QUOTE
-            </button>
+            </a>
           </div>
         </div>
 
