@@ -7,7 +7,6 @@ import { MagBtn } from "./Common/MagBtn";
 
 export function Navbar() {
   const [scrolled, setScrolled] = useState(false);
-  const [inShopZone, setInShopZone] = useState(false);
   const [open, setOpen] = useState(false);
   const [showDropdown, setShowDropdown] = useState(false);
 
@@ -17,19 +16,15 @@ export function Navbar() {
   useEffect(() => {
     const fn = () => {
       setScrolled(window.scrollY > 44);
-      // Detect if we've scrolled past the 3D experience into the shop zone
-      const shopContent = document.querySelector('.shop-content-below');
-      if (shopContent) {
-        const rect = shopContent.getBoundingClientRect();
-        setInShopZone(rect.top < 80);
-      }
     };
     window.addEventListener("scroll", fn);
     return () => window.removeEventListener("scroll", fn);
   }, []);
 
-  // Dynamic navbar styling: glassmorphism dark when over 3D, cream when over shop
-  const isDarkMode = !inShopZone;
+  const navBg = scrolled ? "rgba(246,240,232,.96)" : "transparent";
+  const textColor = "var(--ink)";
+  const dimColor = "var(--mid)";
+  const borderColor = scrolled ? "1px solid var(--border)" : "1px solid transparent";
 
   const links = [
     ["home", "Home"],
@@ -40,16 +35,6 @@ export function Navbar() {
   ];
 
   const totalCartItems = items.reduce((acc, item) => acc + item.quantity, 0);
-
-  const navBg = isDarkMode
-    ? (scrolled ? "rgba(0,0,0,0.65)" : "transparent")
-    : (scrolled ? "rgba(246,240,232,.96)" : "transparent");
-
-  const textColor = isDarkMode ? "#fff" : "var(--ink)";
-  const dimColor = isDarkMode ? "rgba(255,255,255,0.6)" : "var(--mid)";
-  const borderColor = isDarkMode
-    ? (scrolled ? "rgba(255,255,255,0.08)" : "transparent")
-    : (scrolled ? "1px solid var(--border)" : "1px solid transparent");
 
   return (
     <>
@@ -145,7 +130,7 @@ export function Navbar() {
                   onClick={() => setShowDropdown(!showDropdown)}
                   style={{ background: "none", border: "none", cursor: "pointer", display: "flex", alignItems: "center", gap: "8px", color: textColor }}
                 >
-                  <div style={{ width: "32px", height: "32px", borderRadius: "50%", background: isDarkMode ? "rgba(255,255,255,0.1)" : "var(--cream2)", display: "flex", alignItems: "center", justifyContent: "center" }}>
+                  <div style={{ width: "32px", height: "32px", borderRadius: "50%", background: "var(--cream2)", display: "flex", alignItems: "center", justifyContent: "center" }}>
                     <User size={16} />
                   </div>
                 </button>

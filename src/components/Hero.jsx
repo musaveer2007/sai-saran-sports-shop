@@ -1,6 +1,6 @@
 export function Hero() {
   return (
-    <section className="relative w-full min-h-[90dvh] bg-[var(--cream)] flex items-center justify-center pt-24 pb-16 overflow-hidden">
+    <section className="relative w-full bg-[var(--cream)] pt-32 lg:pt-40 pb-16 lg:pb-24 overflow-hidden">
       
       {/* Subtle decorative geometric element */}
       <div className="absolute top-0 right-0 w-[40vw] h-[40vw] bg-[var(--beige)] rounded-full mix-blend-multiply opacity-30 blur-3xl translate-x-1/3 -translate-y-1/3 pointer-events-none" />
