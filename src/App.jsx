@@ -11,7 +11,7 @@ import { DashboardHome } from "./pages/admin/DashboardHome";
 import { ProductsAdmin } from "./pages/admin/ProductsAdmin";
 import { ProductForm } from "./pages/admin/ProductForm";
 import { PlaceholderAdmin } from "./pages/admin/PlaceholderAdmin";
-import { LenisProvider } from "./components/Background/LenisProvider";
+import { PlaceholderAdmin } from "./pages/admin/PlaceholderAdmin";
 import { PublicLayout } from "./layouts/PublicLayout";
 
 function BackToTop() {
@@ -87,7 +87,7 @@ export default function App() {
     <>
       <Loader done={isReady} />
       {isReady && (
-        <LenisProvider>
+        <>
           <Routes>
             <Route element={<PublicLayout />}>
               <Route path="/" element={<Home />} />
@@ -108,7 +108,7 @@ export default function App() {
             </Route>
           </Routes>
           <BackToTop />
-        </LenisProvider>
+        </>
       )}
     </>
   );
