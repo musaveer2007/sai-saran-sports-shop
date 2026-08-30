@@ -74,15 +74,17 @@ export function CanvasSequence({ totalFrames = 150, onSportChange }) {
     let offsetX = 0;
     let offsetY = 0;
 
-    if (canvasRatio > imgRatio) {
-      drawHeight = canvas.width / imgRatio;
-      offsetY = (canvas.height - drawHeight) / 2;
-    } else {
-      drawWidth = canvas.height * imgRatio;
-      offsetX = (canvas.width - drawWidth) / 2;
-    }
+    if (img.complete && img.naturalWidth > 0) {
+      if (canvasRatio > imgRatio) {
+        drawHeight = canvas.width / imgRatio;
+        offsetY = (canvas.height - drawHeight) / 2;
+      } else {
+        drawWidth = canvas.height * imgRatio;
+        offsetX = (canvas.width - drawWidth) / 2;
+      }
 
-    ctx.drawImage(img, offsetX, offsetY, drawWidth, drawHeight);
+      ctx.drawImage(img, offsetX, offsetY, drawWidth, drawHeight);
+    }
 
     // Dispatch frame change event for other components to sync
     window.dispatchEvent(new CustomEvent('frameChange', { detail: index }));
