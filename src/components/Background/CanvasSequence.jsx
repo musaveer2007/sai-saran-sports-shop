@@ -172,8 +172,7 @@ export function CanvasSequence({ totalFrames = 150, onSportChange }) {
         style={{
           position: 'absolute',
           inset: 0,
-          background: 'rgba(0,0,0,0.40)',
-          mixBlendMode: 'multiply',
+          background: 'rgba(0,0,0,0.40)', // mixBlendMode removed for massive performance boost
         }}
       />
     </div>

@@ -77,7 +77,6 @@ export function EffectsLayer() {
         height: '100%',
         zIndex: 1,
         pointerEvents: 'none',
-        mixBlendMode: 'screen',
         transition: 'all 1s',
       }}
     >
@@ -86,9 +85,8 @@ export function EffectsLayer() {
         style={{
           position: 'absolute',
           inset: 0,
-          opacity: 0.3,
+          opacity: 0.15, // Reduced opacity since it's no longer color blending, just a normal overlay
           transition: 'all 1s',
-          mixBlendMode: 'color',
           background: `radial-gradient(circle at center, transparent 30%, ${themeColor} 150%)`,
         }}
       />
