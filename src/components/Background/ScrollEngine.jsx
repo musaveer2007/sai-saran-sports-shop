@@ -24,6 +24,9 @@ export function ScrollEngine({ children }) {
       const tl = gsap.timeline({ paused: true });
       tlRef.current = tl;
 
+      // Normalize scroll for mobile touch devices
+      ScrollTrigger.normalizeScroll(true);
+
       // Pinning ScrollTrigger that drives everything
       ScrollTrigger.create({
         trigger: wrapper,

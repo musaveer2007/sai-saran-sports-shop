@@ -26,12 +26,17 @@ export function CanvasSequence({ totalFrames = 150, onSportChange }) {
     for (let i = 1; i <= totalFrames; i++) {
       const img = new Image();
       const frameNumber = i.toString().padStart(3, '0');
-      img.src = `/frames/ezgif-frame-${frameNumber}.png`;
+      img.src = `/frames/ezgif-frame-${frameNumber}.webp`;
 
       img.onload = () => {
         loadedCount++;
-        if (loadedCount === totalFrames) {
+        // As soon as frame 1 loads, draw it to prevent black screen!
+        if (i === 1) {
           drawFrame(1);
+        }
+        // When all finish loading, you can trigger a full ready state if needed
+        if (loadedCount === totalFrames) {
+          console.log("All frames loaded");
         }
       };
       loadedImages.push(img);
