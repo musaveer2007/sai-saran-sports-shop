@@ -23,10 +23,14 @@ export function CanvasSequence({ totalFrames = 150, onSportChange }) {
     const loadedImages = [];
     let loadedCount = 0;
 
+    // Check if we are on mobile to load smaller frames (prevent iOS memory crash)
+    const isMobile = window.innerWidth <= 768;
+    const folder = isMobile ? 'frames-mobile' : 'frames';
+
     for (let i = 1; i <= totalFrames; i++) {
       const img = new Image();
       const frameNumber = i.toString().padStart(3, '0');
-      img.src = `/frames/ezgif-frame-${frameNumber}.webp`;
+      img.src = `/${folder}/ezgif-frame-${frameNumber}.webp`;
 
       img.onload = () => {
         loadedCount++;
