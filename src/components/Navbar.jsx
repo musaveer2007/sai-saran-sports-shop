@@ -45,17 +45,15 @@ export function Navbar() {
           left: 0,
           right: 0,
           zIndex: 990,
-          padding: scrolled ? "13px 48px" : "22px 48px",
+          padding: scrolled ? "13px 0" : "22px 0",
           background: navBg,
           backdropFilter: scrolled ? "blur(18px)" : "none",
           WebkitBackdropFilter: scrolled ? "blur(18px)" : "none",
           borderBottom: borderColor,
           transition: "all .36s cubic-bezier(.4,0,.2,1)",
-          display: "flex",
-          alignItems: "center",
-          justifyContent: "space-between",
         }}
       >
+        <div className="cont" style={{ display: "flex", alignItems: "center", justifyContent: "space-between" }}>
         <a
           href="/#home"
           style={{ display: "flex", alignItems: "center", gap: 11, textDecoration: "none" }}
@@ -188,6 +186,7 @@ export function Navbar() {
             </svg>
           )}
         </button>
+        </div>
       </nav>
 
       <div className={`mob-nav${open ? " open" : ""}`}>

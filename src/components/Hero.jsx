@@ -1,52 +1,137 @@
 export function Hero() {
   return (
-    <section className="relative w-full bg-[var(--cream)] pt-32 lg:pt-40 pb-16 lg:pb-24 overflow-hidden">
-      
+    <section 
+      style={{ 
+        position: 'relative', 
+        width: '100%', 
+        background: 'var(--cream)', 
+        paddingTop: '160px', 
+        paddingBottom: '96px', 
+        overflow: 'hidden' 
+      }}
+    >
       {/* Subtle decorative geometric element */}
-      <div className="absolute top-0 right-0 w-[40vw] h-[40vw] bg-[var(--beige)] rounded-full mix-blend-multiply opacity-30 blur-3xl translate-x-1/3 -translate-y-1/3 pointer-events-none" />
+      <div 
+        style={{
+          position: 'absolute',
+          top: 0,
+          right: 0,
+          width: '40vw',
+          height: '40vw',
+          background: 'var(--beige)',
+          borderRadius: '50%',
+          mixBlendMode: 'multiply',
+          opacity: 0.3,
+          filter: 'blur(100px)',
+          transform: 'translate(33%, -33%)',
+          pointerEvents: 'none'
+        }}
+      />
 
-      <div className="container mx-auto px-6 max-w-7xl relative z-10 flex flex-col lg:flex-row items-center gap-12 lg:gap-8">
-        
+      <div 
+        className="cont"
+        style={{
+          position: 'relative',
+          zIndex: 10,
+          display: 'flex',
+          alignItems: 'center',
+          justifyContent: 'space-between',
+          flexWrap: 'wrap',
+          gap: '48px'
+        }}
+      >
         {/* Left Side: Typography & CTA */}
-        <div className="w-full lg:w-1/2 flex flex-col items-start text-left pt-12 lg:pt-0">
-          
+        <div 
+          style={{
+            flex: '1 1 45%',
+            minWidth: '320px',
+            display: 'flex',
+            flexDirection: 'column',
+            alignItems: 'flex-start',
+            textAlign: 'left'
+          }}
+        >
           {/* Eyebrow */}
-          <div className="flex items-center gap-4 mb-6">
-            <span className="h-[1px] w-8 bg-[var(--red)]"></span>
-            <span className="text-xs tracking-[0.2em] font-semibold text-[var(--red)] uppercase">
+          <div style={{ display: 'flex', alignItems: 'center', gap: '16px', marginBottom: '24px' }}>
+            <span style={{ height: '2px', width: '32px', background: 'var(--red)' }}></span>
+            <span style={{ fontSize: '12px', letterSpacing: '0.2em', fontWeight: 600, color: 'var(--red)', textTransform: 'uppercase', fontFamily: 'var(--dm)' }}>
               Est. 2010 · Ponneri
             </span>
           </div>
 
           {/* Headline */}
-          <h1 className="text-5xl md:text-7xl lg:text-[5rem] leading-[1.05] font-serif font-medium text-[var(--charcoal)] mb-6">
+          <h1 
+            style={{
+              fontSize: 'clamp(48px, 6vw, 80px)',
+              lineHeight: 1.05,
+              fontFamily: 'var(--play)',
+              fontWeight: 500,
+              color: 'var(--charcoal)',
+              marginBottom: '24px'
+            }}
+          >
             GEAR UP.<br />
-            PLAY <span className="text-[var(--red)] italic pr-2">HARDER.</span>
+            PLAY <span style={{ color: 'var(--red)', fontStyle: 'italic', paddingRight: '8px' }}>HARDER.</span>
           </h1>
 
           {/* Supporting Text */}
-          <p className="text-lg md:text-xl text-[var(--charcoal)] opacity-80 max-w-md mb-10 leading-relaxed font-light">
+          <p 
+            style={{
+              fontSize: 'clamp(16px, 1.5vw, 20px)',
+              color: 'var(--charcoal)',
+              opacity: 0.8,
+              maxWidth: '450px',
+              marginBottom: '40px',
+              lineHeight: 1.6,
+              fontFamily: 'var(--dm)',
+              fontWeight: 300
+            }}
+          >
             Quality sports equipment and apparel built for every game, every team, and every ambition.
           </p>
 
           {/* Call to Action */}
-          <div className="flex flex-col sm:flex-row items-center gap-4 w-full sm:w-auto">
-            <button className="w-full sm:w-auto px-8 py-4 bg-[var(--red)] text-white font-medium tracking-wide hover:bg-red-700 transition-colors duration-300">
+          <div style={{ display: 'flex', flexWrap: 'wrap', gap: '16px', alignItems: 'center' }}>
+            <button className="btn-r" style={{ padding: '16px 32px', fontSize: '14px' }}>
               SHOP PRODUCTS
             </button>
-            <button className="w-full sm:w-auto px-8 py-4 bg-transparent text-[var(--charcoal)] border border-[var(--charcoal)] font-medium tracking-wide hover:bg-[var(--charcoal)] hover:text-white transition-colors duration-300">
+            <button className="btn-ol" style={{ padding: '15px 32px', fontSize: '14px' }}>
               GET A QUOTE
             </button>
           </div>
         </div>
 
         {/* Right Side: Premium Sports Visual */}
-        <div className="w-full lg:w-1/2 relative flex justify-center lg:justify-end mt-8 lg:mt-0">
-          <div className="relative w-full max-w-[600px] aspect-square lg:aspect-[4/3] rounded-2xl overflow-hidden">
+        <div 
+          style={{
+            flex: '1 1 45%',
+            minWidth: '320px',
+            position: 'relative',
+            display: 'flex',
+            justifyContent: 'center',
+            alignItems: 'center'
+          }}
+        >
+          <div 
+            style={{
+              position: 'relative',
+              width: '100%',
+              maxWidth: '600px',
+              aspectRatio: '4/3',
+              borderRadius: '24px',
+              overflow: 'hidden',
+              boxShadow: 'var(--sh-xl)'
+            }}
+          >
             <img 
               src="/images/hero-sports.png" 
-              alt="Premium Sports Equipment including Football, Volleyball, Badminton, and Cricket" 
-              className="w-full h-full object-cover object-center"
+              alt="Premium Sports Equipment" 
+              style={{
+                width: '100%',
+                height: '100%',
+                objectFit: 'cover',
+                objectPosition: 'center'
+              }}
               loading="eager"
             />
           </div>
