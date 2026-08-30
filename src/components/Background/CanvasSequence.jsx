@@ -35,10 +35,15 @@ export function CanvasSequence({ totalFrames = 150, onSportChange }) {
 
       img.onload = () => {
         loadedCount++;
-        // As soon as frame 1 loads, draw it to prevent black screen!
-        if (i === 1) {
-          drawFrame(1);
+        
+        // If this newly loaded image is the frame we are currently trying to look at, draw it immediately!
+        // This fixes the issue where scrolling before images are loaded leaves a blank screen until you scroll again.
+        if (i === Math.floor(frameRef.current.current)) {
+          // Reset the cached index so it forces a redraw
+          lastDrawnIndexRef.current = -1;
+          drawFrame(frameRef.current.current);
         }
+        
         // When all finish loading, you can trigger a full ready state if needed
         if (loadedCount === totalFrames) {
           console.log("All frames loaded");
@@ -75,7 +80,6 @@ export function CanvasSequence({ totalFrames = 150, onSportChange }) {
 
     // PERFORMANCE FIX: Don't redraw if it's the exact same frame!
     if (lastDrawnIndexRef.current === safeIndex) return;
-    lastDrawnIndexRef.current = safeIndex;
 
     const img = images[safeIndex];
     if (!img) return;
@@ -98,6 +102,9 @@ export function CanvasSequence({ totalFrames = 150, onSportChange }) {
       }
 
       ctx.drawImage(img, offsetX, offsetY, drawWidth, drawHeight);
+      
+      // Successfully drew the frame, now cache the index so we don't redraw it
+      lastDrawnIndexRef.current = safeIndex;
     }
 
     // Dispatch frame change event for other components to sync
