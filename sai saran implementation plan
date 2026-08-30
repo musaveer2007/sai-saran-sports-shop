@@ -1,0 +1,55 @@
+# Sai Saran Sports App Backend - A to Z Implementation Plan
+
+This plan outlines the architecture to transition your current static, hardcoded React frontend (`App.jsx`) into a fully functional, dynamic e-commerce web application.
+
+## User Review Required
+> [!IMPORTANT]
+> Please review the technology stack chosen for the backend. I have proposed **Node.js with Express and MongoDB**, but if you prefer **Python with FastAPI** (like your other project), let me know before we begin!
+
+## Proposed Changes
+
+---
+
+### Phase 1: Database Setup & Configuration
+Currently, all products (`PRODUCTS`), team jersey samples, and stats are hardcoded in `App.jsx`. We need a database to store and manage these dynamically.
+- Setup MongoDB (or PostgreSQL) database.
+- Create Mongoose Schemas (or SQLAlchemy models) for:
+  - `User` (Admin owners)
+  - `Product` (Jerseys, Shoes, Equipment)
+  - `Order` (Customer purchases)
+  - `Lead` (Contact Us and Quote requests)
+
+### Phase 2: Core E-Commerce API endpoints
+We will build the RESTful API to serve data to the React app.
+
+#### [NEW] Backend Directory Structure:
+- `backend/server.js`: Entry point.
+- `backend/routes/productRoutes.js`: Endpoints to get products (`GET /api/products`) and for the admin to add/edit them (`POST /api/products`).
+- `backend/routes/orderRoutes.js`: Endpoints to handle customer checkout.
+- `backend/routes/contactRoutes.js`: To capture leads from the "Get a Quote" buttons.
+
+### Phase 3: Admin Authentication & Dashboard Flow
+The shop owner needs a secure way to log in and manage inventory.
+- Implement JWT (JSON Web Token) authentication.
+- Create a protected `/admin` route or separate admin panel where the owner can CRUD (Create, Read, Update, Delete) the `PRODUCTS` list dynamically without touching code.
+
+### Phase 4: Frontend Integration & Refactoring
+We will wire up the beautiful frontend UI to seamlessly talk to the new backend.
+
+#### [MODIFY] `src/App.jsx`
+- Remove the hardcoded `const PRODUCTS = [...]` array.
+- Implement `useEffect` and `fetch` to load products dynamically from `http://localhost:5000/api/products`.
+- Update the "Get Quote" and "Shop Now" buttons to trigger actual API requests (or add to a cart state) instead of just scrolling or doing nothing.
+
+### Phase 5: Image Upload Integration
+Currently, product images use Unsplash placeholder URLs. The real business needs to upload photos of *their* actual stock.
+- Integrate **Cloudinary** or **AWS S3** so the admin can upload jersey and equipment photos directly from the dashboard.
+
+## Open Questions
+1. **Tech Stack**: Would you like the backend built in Node.js/Express, or Python/FastAPI?
+2. **Checkout Flow**: For the "Get a Quote" and "Shop Now" buttons, do you want a full Cart & Payment Gateway (Razorpay) integration, or just a form that captures the order and redirects them to the shop's WhatsApp business number?
+
+## Verification Plan
+1. Start the API server and verify `GET /api/products` returns the catalog in Postman/browser.
+2. Update the frontend React app and verify visually that it renders the database catalog exactly as the hardcoded one did.
+3. Test submitting a "Quote" via the UI and verify it successfully saves to the database.
