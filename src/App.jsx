@@ -11,7 +11,6 @@ import { DashboardHome } from "./pages/admin/DashboardHome";
 import { ProductsAdmin } from "./pages/admin/ProductsAdmin";
 import { ProductForm } from "./pages/admin/ProductForm";
 import { PlaceholderAdmin } from "./pages/admin/PlaceholderAdmin";
-import { PlaceholderAdmin } from "./pages/admin/PlaceholderAdmin";
 import { PublicLayout } from "./layouts/PublicLayout";
 
 function BackToTop() {
